@@ -12,35 +12,6 @@ export function UserDetails() {
   const [jsonOutput, setJsonOutput] = useState(false);
   const [preferences, setPreferences] = useState(null); // State to store user preferences
 
-  useEffect(() => {
-    // Function to fetch user preferences from Supabase
-    const fetchPreferences = async () => {
-      try {
-        // Make request to Supabase to fetch preferences based on user ID
-        const { data, error } = await supabaseClient
-          .from("users")
-          .select("preferences")
-          .eq("user_id", user.id)
-          .single();
-
-        if (error) {
-          throw error;
-        }
-
-        // If preferences are found, set them in state
-        if (data) {
-          setPreferences(data.preferences);
-        }
-      } catch (error) {
-        console.error("Error fetching preferences:", error);
-      }
-    };
-
-    // Fetch user preferences when user is loaded and user ID is available
-    if (isLoaded && user) {
-      fetchPreferences();
-    }
-  }, [isLoaded, user]);
 
   return (
     <div
