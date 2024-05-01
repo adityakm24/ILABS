@@ -11,6 +11,13 @@ export function UserDetails() {
   const { isLoaded, user } = useUser();
   const [jsonOutput, setJsonOutput] = useState(false);
   const [preferences, setPreferences] = useState(null); // State to store user preferences
+useEffect(() => {
+  // Use type assertion to inform TypeScript that Prism exists on window
+  if ((window as any).Prism) {
+    console.log(`highlighting`);
+    (window as any).Prism.highlightAll();
+  }
+}, []);
 
 
   return (
