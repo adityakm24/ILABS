@@ -1,5 +1,6 @@
-import { Webhook, WebhookEvent } from 'svix';
+import { Webhook} from 'svix';
 import { supabaseClient } from '../../../utils/supabaseClient';  // Correct path to your Supabase client
+import { WebhookEvent } from '@clerk/nextjs/server'
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
