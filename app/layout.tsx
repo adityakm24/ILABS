@@ -8,6 +8,7 @@ import Script from "next/script";
 import { Twitter } from "./icons";
 import { Discord } from "./icons";
 import { Metadata } from "next";
+import FeedbackForm from "./feedback/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -70,7 +71,9 @@ export default function RootLayout({
             <div className="grow" />
             <SignedIn>
               <button className="btn">Book a lab</button>
-              <button className="btn">Feedback</button>
+              <Link href="/feedback" className="btn">
+                  Feedback
+              </Link>
               <UserButton afterSignOutUrl="/">
                 <UserButton.UserProfileLink
                   label="Preferences Edit"
