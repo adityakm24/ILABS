@@ -46,6 +46,8 @@ const primaryEmail = email_addresses.find(email => email.id === primary_email_ad
 
 // Extract the primary email ID if needed (it seems you already have `primary_email_id` directly from `event.data`)
 const primaryEmailID = primary_email_address_id; // This is probably redundant if `primary_email_id` is already defined
+const lastSignInAtDate = last_sign_in_at ? new Date(last_sign_in_at) : null;
+const updatedAtDate = updated_at ? new Date(updated_at) : null;
 
 
   const { data, error } = await supabaseClient
@@ -59,9 +61,9 @@ const primaryEmailID = primary_email_address_id; // This is probably redundant i
         email: primaryEmail,
         primary_email_id: primaryEmailID,
         primary_phone_number_id: primary_phone_number_id,
-        last_sign_in_at: new Date(last_sign_in_at).toISOString(),
+        last_sign_in_at: lastSignInAtDate ? lastSignInAtDate.toISOString() : null,
         password_enabled: password_enabled,
-        updated_at: new Date(updated_at).toISOString(),
+        updated_at: updatedAtDate ? updatedAtDate.toISOString() : null,
       }
     ],
     {
