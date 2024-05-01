@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 
   // Process 'user.created' webhook event
   if (event.type === 'user.created') {
- const { id, first_name, last_name, email_addresses, primary_email_address_id, phone_number, last_sign_in_at,primary_phone_number_id,profile_image_url, password_enabled, updated_at, birthday } = event.data;
+ const { id, first_name, last_name, email_addresses, primary_email_address_id, last_sign_in_at,primary_phone_number_id, profile_image_url, password_enabled, updated_at } = event.data;
 const primaryEmail = email_addresses.find(email => email.id === primary_email_address_id)?.email_address;
 
 // Extract the primary email ID if needed (it seems you already have `primary_email_id` directly from `event.data`)
@@ -56,13 +56,11 @@ const primaryEmailID = primary_email_address_id; // This is probably redundant i
       last_name: last_name,
       email: primaryEmail,
       primary_email_id: primaryEmailID,
-      phone_number: phone_number,
       primary_phone_number_id: primary_phone_number_id,
       last_sign_in_at: new Date(last_sign_in_at).toISOString(),  // Assuming last_sign_in_at is a timestamp
       password_enabled: password_enabled,
       profile_image_url: profile_image_url,
       updated_at: new Date(updated_at).toISOString(),  // Assuming updated_at is a timestamp
-      birthday: birthday ? new Date(birthday).toISOString() : null  // Convert birthday to ISO string if not null
     }, {
       returning: "minimal",  // Optional: Do not return data in response to speed up the request
       onConflict: "user_id"  // The unique constraint column, used to trigger the update
