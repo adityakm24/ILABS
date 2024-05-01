@@ -1,6 +1,5 @@
 "use client";
 import { ClerkProvider, SignedIn, UserButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/api";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Image from "next/image";
