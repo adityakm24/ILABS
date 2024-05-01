@@ -49,21 +49,25 @@ const primaryEmailID = primary_email_address_id; // This is probably redundant i
 
 
   const { data, error } = await supabaseClient
-    .from('users')
-    .upsert({  // The upsert method automatically handles the insert or update
-      user_id: id,
-      first_name: first_name,
-      last_name: last_name,
-      email: primaryEmail,
-      primary_email_id: primaryEmailID,
-      primary_phone_number_id: primary_phone_number_id,
-      last_sign_in_at: new Date(last_sign_in_at).toISOString(),  // Assuming last_sign_in_at is a timestamp
-      password_enabled: password_enabled,
-      updated_at: new Date(updated_at).toISOString(),  // Assuming updated_at is a timestamp
-    }, {
-      returning: "minimal",  // Optional: Do not return data in response to speed up the request
-      onConflict: "user_id"  // The unique constraint column, used to trigger the update
-    });
+  .from('users')
+  .upsert(
+    [
+      {
+        user_id: id,
+        first_name: first_name,
+        last_name: last_name,
+        email: primaryEmail,
+        primary_email_id: primaryEmailID,
+        primary_phone_number_id: primary_phone_number_id,
+        last_sign_in_at: new Date(last_sign_in_at).toISOString(),
+        password_enabled: password_enabled,
+        updated_at: new Date(updated_at).toISOString(),
+      }
+    ],
+    {
+      onConflict: "user_id",
+    }
+  );
 
     if (error) {
       console.error('Failed to insert data into Supabase:', error);
