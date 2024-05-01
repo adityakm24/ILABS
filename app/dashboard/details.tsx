@@ -49,31 +49,7 @@ export function UserDetails() {
         boxShadow: `0px 20px 24px -4px rgba(16, 24, 40, 0.08)`,
       }}
     >
-      <div className="flex flex-col p-8">
-        <h1 className="text-xl leading-6 font-semibold text-gray-900 mb-4 text-align: left">
-          House Name
-        </h1>
-        
-        
-        <div className="w-full">
-          <Image
-            src="/house.jpg"
-            alt="Luxury House"
-            width={500}
-            height={300}
-            layout="responsive"
-            className="rounded-lg"
-          />
-        </div>
-        {/* Render preferences if available */}
-        {preferences && (
-          <div className="mt-4">
-            <h2 className="text-lg font-semibold mb-2">Preferences:</h2>
-            {/* Render preferences data here */}
-            <JSONOutput json={preferences} />
-          </div>
-        )}
-      </div>
+
     </div>
   );
 }

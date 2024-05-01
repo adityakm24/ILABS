@@ -71,6 +71,7 @@ export default function RootLayout({
             <div className="grow" />
             <SignedIn>
               <button className="btn">Book a lab</button>
+              <button className="btn">Feedback</button>
               <UserButton afterSignOutUrl="/">
                 <UserButton.UserProfileLink
                   label="Preferences Edit"
